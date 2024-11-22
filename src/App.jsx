@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 function App() {
   const [apiInput, setApiInput] = useState('{"data":["M","1","334","4","B","z","a"]}');
-  const [filterType, setFilterType] = useState('numbers');
+  const [filterType, setFilterType] = useState('all');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [responseData, setResponseData] = useState(null);
   const [errorMessage, setErrorMessage] = useState('');
@@ -30,6 +30,7 @@ function App() {
       let data = await response.json();
       setResponseData(data);
     } catch (error) {
+      setResponseData(null);
       setErrorMessage('Invalid JSON input. Please check your input format.');
       console.error("Error:", error);
     }
@@ -84,8 +85,8 @@ function App() {
       >
         Submit
       </button>
-
-      <div className="space-y-4">
+      {
+      responseData != null && <div className="space-y-4">
         <div className="relative">
           <div
             className="flex items-center justify-between border rounded-md p-2 bg-gray-50 cursor-pointer"
@@ -126,6 +127,7 @@ function App() {
           </div>
         )}
       </div>
+}
     </div>
   );
 }

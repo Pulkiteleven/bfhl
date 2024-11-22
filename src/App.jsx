@@ -21,7 +21,7 @@ function App() {
       };
 
       let bodyContent = apiInput;
-      let response = await fetch("/bfhl", {
+      let response = await fetch("https://bajaj-backend-c2r3.vercel.app/bfhl", {
         method: "POST",
         body: bodyContent,
         headers: headersList,
